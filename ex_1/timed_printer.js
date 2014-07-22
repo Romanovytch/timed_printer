@@ -4,9 +4,14 @@ var	timed_print;
 var	buffer;
 var	tmp;
 var	offset;
+var	time_print;
+var	bytes;
 
-offset  = 0;
-fs	= require('fs');
+fs		=	require('fs');
+
+time_print	=	1000;
+bytes		=	10;
+offset		=	0;
 
 if (process.argv.length < 3) {
   console.log('Usage: node ' + process.argv[1] + ' text.txt');
@@ -14,13 +19,13 @@ if (process.argv.length < 3) {
 }
 
 timed_print = function(){
-    tmp = buffer.slice(offset, offset + 10);
+    tmp = buffer.slice(offset, offset + bytes);
     process.stdout.write(tmp);
-    offset = offset + 10;
+    offset = offset + bytes;
 };
 
 fs.readFile(process.argv[2], 'utf8', function(err, data) {
     if (err) throw err;
     buffer = data;
-    setInterval(timed_print, 1000);
+    setInterval(timed_print, time_print);
 });
