@@ -1,4 +1,0 @@
-For each ex_
-
-Usage :
-node timed_printer.js text.txt
